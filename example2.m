@@ -3,6 +3,8 @@
 %  living environment》
 clear, clc
 rng(1);
+cd(fileparts(mfilename('fullpath')));
+addpath(genpath(cd));
 %========== 1.Read Excel file ==========
 %  obtain variables: data, indicators, codes
 [data, indicators, codes] = example2_read_data_from_excel();
