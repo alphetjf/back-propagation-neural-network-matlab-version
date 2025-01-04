@@ -11,7 +11,7 @@ y = sin(X) + 0.1*randn(size(X));
 % 1个输入，10个隐藏神经元，1个输出
 % 1 input, 10 hidden neurons, 1 output
 net = BPNetwork(1, 10, 1);  
-[net, loss_history] = train(net, X, y, 10000, 50);
+[net, loss_history, ~] = train(net, X, y, 1000, 50);
 
 % 3.predict
 X_test = linspace(-5, 5, 200)';

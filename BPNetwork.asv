@@ -105,20 +105,18 @@ classdef BPNetwork
                     Y_batch = Y_shuffled(start_idx:end_idx, :);
                     
                     % 前向传播 forward propagation
-                    [output, cache] = net.forward(X_batch);
+                    [y_, ~] = net.forward(X_validate);
 
                     % 计算训练损失 Calculate training losses
                     % loss = mean(sum((output - Y_batch).^2, 1)); % MSE
                     loss = mean(abs(output - Y_batch)./output);
                     loss_history(counter) = loss;
                     
-                    % 计算验证损失 Calculate validation losses]
-                    if nargin > 5
-                        [y_pred, ~] = net.forward(X_validate);
-                        % vloss = mean(sum((y_pred - y_validate).^2, 1)); % MSE
-                        vloss = mean(abs(y_pred - y_validate)./y_pred);
-                        validate_loss(counter) = vloss;
-                    end
+                    % 计算验证损失 Calculate validation losses
+                    [output, cache] = net.forward(X_batch);
+                    % loss = mean(sum((output - Y_batch).^2, 1)); % MSE
+                    loss = mean(abs(output - Y_batch)./output);
+                    loss_history(counter) = loss;
 
                     % 反向传播 Back Propagation
                     gradients = net.backward(cache, Y_batch, output);

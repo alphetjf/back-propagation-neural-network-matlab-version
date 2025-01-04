@@ -1,6 +1,7 @@
 %------------------------------- Statement -------------------------------
-%《assessing the aging suitability evaluation system of rural 
-%  living environment》
+% 《Inspection of the energy-saving effect evaluation system of the 
+% engineering case lighting system》
+《Assthe aging suitability evaluation system of rural living environment》
 clear, clc
 rng(1);
 %========== 1.Read Excel file ==========
@@ -28,30 +29,20 @@ X_validate=X_shuffled(trainSize+1:n_samples,:);
 Y_validate=Y_shuffled(trainSize+1:n_samples,:);
 
 %========== 3.Create and train a network ==========
-% 18 input, 15 hidden neurons, 1 output
+% 18 input, 10 hidden neurons, 1 output
 % 1000 epochs, 4 the batch size
 net = BPNetwork(inputSize, 10, outputSize);  
-[net, train_loss_history, validate_loss_history] = train(net, X, Y, 1000, 4, X_validate, Y_validate);
+[net, loss_history] = train(net, X, Y, 1000, 4);
 
 figure
-plot(train_loss_history, 'b-', 'LineWidth', 2, 'DisplayName', 'Training Loss');
-hold on;
-plot(validate_loss_history, 'r--', 'LineWidth', 2, 'DisplayName', 'Validation Loss');
-title('Training Performance');
+plot(loss_history);
+title('Training Loss');
 xlabel('Iteration');
-ylabel('Loss');
-legend('show');
-grid on;
-set(gca, 'FontSize', 12);
-set(gcf, 'Position', [100, 100, 800, 600]);
-
-box on;
-set(gca, 'LineWidth', 1.5);  % Set the width of the coordinate axis line
-set(gcf, 'Color', 'white');  % Set the background to white
+ylabel('MSE Loss');
 
 %========== 4.validate ==========
 Y_pred = net.predict(X_validate);
 % validate_error = mean(sum((Y_pred - Y_validate).^2, 1));
-validate_error = mean(abs(Y_pred - Y_validate)./Y_pred);
+validate_error = mean(abs(Y_pred - Y_validate)./Y_validate);
 disp('The validation error:');
 disp(validate_error);
