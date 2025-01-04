@@ -28,7 +28,7 @@ X_validate=X_shuffled(trainSize+1:n_samples,:);
 Y_validate=Y_shuffled(trainSize+1:n_samples,:);
 
 %========== 3.Create and train a network ==========
-% 18 input, 15 hidden neurons, 1 output
+% 18 input, 10 hidden neurons, 1 output
 % 1000 epochs, 4 the batch size
 net = BPNetwork(inputSize, 10, outputSize);  
 [net, train_loss_history, validate_loss_history] = train(net, X, Y, 1000, 4, X_validate, Y_validate);
