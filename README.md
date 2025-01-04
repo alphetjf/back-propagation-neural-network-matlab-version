@@ -32,19 +32,19 @@ In the file **example 2.m**, an engineering case for testing the aging suitabili
     'Bedroom space';
     'Kitchen and dining space';
     'Bathroom space';
-    Residential transportation space;
+    'Residential transportation space';
     'Residential structural safety';
     'Safety of household devices';
     'Road network layout';
     'Accessibility for travel';
     'Living infrastructure';
-    Medical and elderly care service facilities;
+    'Medical and elderly care service facilities';
     'Commercial shopping facilities';
     'Entertainment facilities';
-    Interpersonal emotional support;
-    The richness of activities in the village;
+    'Interpersonal emotional support';
+    'The richness of activities in the village';
     'Social participation of the elderly';
-    Policy and legal publicity situation;
+    'Policy and legal publicity situation';
     'Disposable monthly income of elderly people';
 
 Evaluate whether a rural living environment is suitable for elderly people. BP neural network is used as an evaluation and testing model.
